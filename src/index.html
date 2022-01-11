@@ -7,9 +7,36 @@
     <title>Document</title>
   </head>
   <body>
-    <p>Just how it is <img src="./assets/downloadIcon.svg" alt="Download" /></p>
+    <main>
+      <header>
+        <div class="todo__list__header">
+          <div class="header__todo">
+            <h1>Today's To Do</h1>
+            <div class="image__header">
+              <img src="./assets/reload.svg" alt="Reload Icon" class="reload" />
+            </div>
+          </div>
+        </div>
+        <hr />
+        <form action="#">
+          <input
+            type="text"
+            placeholder="Add to your list..."
+            class="add__list"
+          />
+          <div class="enter">
+            <img src="./assets/return.svg" alt="return icon" class="return" />
+          </div>
+        </form>
+        <hr />
+        <ul class="todo__list">
+          <!-- Dynamicaly Generated -->
+        </ul>
+      </header>
 
-    <h1>Hello World</h1>
-    <p>Just it is <img src="./assets/downloadIcon.svg" alt="Download" /></p>
+      <div class="footer">
+        <h3>Clear all completed</h3>
+      </div>
+    </main>
   </body>
 </html>
