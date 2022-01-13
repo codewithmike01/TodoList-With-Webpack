@@ -2,7 +2,7 @@
 
 :root {
   --font-color: gray;
-  --bottom-rule: rgb(241, 241, 241);
+  --bottom-rule: rgb(182, 182, 182);
   --font-size: 1.3em;
 }
 
@@ -45,6 +45,7 @@ main {
   padding-bottom: 0;
   -webkit-box-shadow: 2px 9px 25px -4px rgba(0, 0, 0, 0.77);
   box-shadow: 2px 9px 25px -4px rgba(0, 0, 0, 0.77);
+  overflow-x: hidden;
 }
 
 main li {
@@ -109,22 +110,48 @@ form {
 .todo__list {
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  margin-top: 15px;
+  border-bottom: 2px solid var(--bottom-rule);
 }
 
 .todo__list li {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 95%;
+  padding: 10px 0;
   margin: 0 auto;
+  z-index: 4;
+}
+
+.todo__list li::before {
+  content: '';
+  width: calc(100% + 40px);
+  height: 2px;
+  background-color: var(--bottom-rule);
+  position: absolute;
+  top: 0;
+  left: -10px;
+}
+
+.color::after {
+  content: '';
+  width: 140%;
+  position: absolute;
+  top: 0;
+  left: -10%;
+  bottom: 0;
+  background-color: rgba(255, 213, 107, 0.7);
+  z-index: 1;
 }
 
 .check {
+  position: relative;
   display: flex;
   gap: 15px;
   align-items: center;
+  margin-top: 10px;
+  z-index: 10;
 }
 
 .check p {
@@ -139,16 +166,33 @@ form {
   width: 40px;
   height: 40px;
   opacity: 0.3;
+  margin-top: 12px;
   margin-right: -7px;
+  z-index: 10;
 }
 
-.three__dots:hover {
+.trash {
+  background-image: url('./assets/trash.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 35px;
+  height: 35px;
+  opacity: 0.3;
+  margin-top: 12px;
+  margin-right: -7px;
+  z-index: 10;
+}
+
+.three__dots:hover,
+.trash:hover {
   cursor: move;
   opacity: 1;
 }
+.trash:hover {
+  cursor: pointer;
+}
 
 .footer {
-  /* position: relative; */
   background-color: rgb(245, 245, 245);
   height: 80px;
   color: var(--font-color);
@@ -162,9 +206,18 @@ form {
   text-align: center;
 }
 
-.footer h3:hover {
+.clearMarked:hover {
   cursor: pointer;
   text-decoration: underline;
   color: #000;
   opacity: 1;
+}
+
+.strike {
+  text-decoration: line-through;
+}
+
+.tagP {
+  width: 180px;
+  outline: none;
 }
