@@ -5,6 +5,8 @@ Using Webpack in the development of a Todo list
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
 Additional description about the project and its features.
+-
+![Screnshoot](https://github.com/Ginohmk/TodoList-With-Webpack/blob/AddRemoveFeature/src/assets/todoListImage13%2013-33-35.png)
 
 ## Built With
 
