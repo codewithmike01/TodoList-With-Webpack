@@ -68,7 +68,7 @@ export default class TodoList {
   }
 }
 
-export function render(member, TodoListObj) {
+export function render(member) {
   todoListContianer.innerHTML = '';
   member.forEach((list) => {
     const check = list.completed ? 'checked' : null;
