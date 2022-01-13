@@ -197,13 +197,15 @@ form {
   background-color: rgb(245, 245, 245);
   height: 80px;
   color: var(--font-color);
+  text-align: center;
 }
 
-.footer h3 {
+.footer .h3 {
   font-size: 1.3em;
   letter-spacing: 1.5px;
   opacity: 0.8;
-  padding-top: 30px;
+  padding: 20px 0;
+  margin-top: 10px;
   text-align: center;
 }
 
@@ -221,4 +223,9 @@ form {
 .tagP {
   width: 180px;
   outline: none;
+}
+
+button {
+  border: none;
+  background-color: transparent;
 }
