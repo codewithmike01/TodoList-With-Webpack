@@ -1,5 +1,5 @@
 import './index.css';
-import TodoList, { inputTodo } from './module/updateStatus';
+import TodoList, { inputTodo } from './module/updateStatus.js';
 import { editDescription, clearComoleted, render } from './module/AddRemove.js';
 
 const TodoListObj = new TodoList();
