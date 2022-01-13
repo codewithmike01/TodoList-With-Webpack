@@ -1,23 +1,36 @@
 import './index.css';
+import TodoList, {
+  render,
+  inputTodo,
+  editDescription,
+} from './module/AddRemove.js';
+import './module/editableContent';
 
-const todoListContianer = document.querySelector('.todo__list');
+const TodoListObj = new TodoList();
+function Starter() {
+  const threeDots = document.querySelectorAll('li');
+  threeDots.forEach((dotValue, index) => {
+    const dot = dotValue.querySelector('.three__dots');
+    if (dot) {
+      const newDot = dot.cloneNode(true);
+      dotValue.replaceChild(newDot, dot);
+      newDot.addEventListener('click', () => {
+        editDescription(dotValue, index, TodoListObj);
+        Starter();
+      });
+    }
+  });
+}
 
-// const li = document.createElement('li');
-
-const listTodo = [
-  { description: 'wash the dishes', completed: false, index: 0 },
-  { description: 'Complete To Do list project', completed: false, index: 1 },
-  { description: 'Fix Car', completed: false, index: 2 },
-];
-
-listTodo.forEach((list) => {
-  todoListContianer.innerHTML += `<li>
-  <div class="check">
-    <input type="checkbox" name="completed" />
-    <p>${list.description}</p>
-  </div>
-  <div class="three__dots">
-  </div>
-</li>
-<hr /> `;
+inputTodo.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    TodoListObj.addTodo();
+    render(TodoListObj.list, TodoListObj);
+    Starter();
+  }
 });
+
+// Create
+
+render(TodoListObj.list, TodoListObj);
+Starter();
