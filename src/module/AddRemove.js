@@ -66,7 +66,7 @@ export function editDescription(dotValue, index, TodoListObj) {
 
   const pDots = divTrash.parentNode.querySelector('.tagP');
   pDots.contentEditable = true;
-  pDots.addEventListener('keyup', () => {
-    TodoListObj.editListWrite(pDots, index);
+  pDots.addEventListener('keyup', (e) => {
+    TodoListObj.editListWrite(pDots, index, e);
   });
 }

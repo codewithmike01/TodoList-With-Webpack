@@ -64,7 +64,7 @@ export default class TodoList {
 
   // SMALL UTILITIES
 
-  editListWrite(pDots, index) {
+  editListWrite(pDots, index, e) {
     this.list[index].description = pDots.innerText;
     localStorage.setItem('todoList', JSON.stringify(this.list));
   }
