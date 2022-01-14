@@ -1,12 +1,9 @@
 import './index.css';
-import TodoList, {
-  render,
-  inputTodo,
-  editDescription,
-} from './module/AddRemove.js';
-import './module/editableContent';
+import TodoList, { inputTodo } from './module/updateStatus.js';
+import { editDescription, clearComoleted, render } from './module/AddRemove.js';
 
 const TodoListObj = new TodoList();
+
 function Starter() {
   const threeDots = document.querySelectorAll('li');
   threeDots.forEach((dotValue, index) => {
@@ -30,7 +27,11 @@ inputTodo.addEventListener('keypress', (e) => {
   }
 });
 
-// Create
+clearComoleted.addEventListener('click', () => {
+  TodoListObj.removeList();
+  render(TodoListObj.list, TodoListObj);
+  Starter();
+});
 
 render(TodoListObj.list, TodoListObj);
 Starter();
