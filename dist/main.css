@@ -45,7 +45,7 @@ main {
   background-color: #fff;
   width: 90%;
   max-width: 898px;
-  margin: 20% auto;
+  margin: 60px auto;
   padding: 20px 0;
   padding-bottom: 0;
   -webkit-box-shadow: 2px 9px 25px -4px rgba(0, 0, 0, 0.77);
@@ -131,12 +131,12 @@ form {
 
 .todo__list li::before {
   content: '';
-  width: calc(100% + 40px);
+  width: calc(120% + 40px);
   height: 2px;
   background-color: var(--bottom-rule);
   position: absolute;
   top: 0;
-  left: -10px;
+  left: -10%;
 }
 
 .color::after {
