@@ -1,4 +1,6 @@
+// eslint-disable-next-line import/no-cycle
 import Starter from '../index.js';
+
 export const inputTodo = document.querySelector('.add__list');
 
 export default class TodoList {
