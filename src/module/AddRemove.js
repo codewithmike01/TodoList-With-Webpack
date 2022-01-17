@@ -45,16 +45,18 @@ export function render(member, TodoListObj) {
 export function editDescription(dotValue, index, TodoListObj) {
   const imageTrash = todoListContianer.querySelectorAll('li');
   const parentImage = imageTrash[index];
-  if (document.querySelector('.color')) {
-    document.querySelector('.color .trash').remove();
-    const divDot = document.createElement('div');
-    divDot.classList.add('three__dots');
-    document.querySelector('.color').appendChild(divDot);
-    document.querySelector('.color').classList.remove('color');
-  }
 
   const divTrash = document.createElement('div');
   divTrash.classList.add('trash');
+  const divDot = document.createElement('div');
+  divDot.classList.add('three__dots');
+
+  if (document.querySelector('.color')) {
+    document.querySelector('.color').appendChild(divDot);
+    document.querySelector('.color .trash').remove();
+    document.querySelector('.color').classList.remove('color');
+  }
+
   parentImage.appendChild(divTrash);
   parentImage.classList.add('color');
   imageTrash[index].querySelector('.three__dots').remove();

@@ -1,10 +1,11 @@
 import './index.css';
+// eslint-disable-next-line import/no-cycle
 import TodoList, { inputTodo } from './module/updateStatus.js';
 import { editDescription, clearComoleted, render } from './module/AddRemove.js';
 
 const TodoListObj = new TodoList();
 
-function Starter() {
+export default function Starter() {
   const threeDots = document.querySelectorAll('li');
   threeDots.forEach((dotValue, index) => {
     const dot = dotValue.querySelector('.three__dots');
