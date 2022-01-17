@@ -157,11 +157,13 @@ form {
   align-items: center;
   margin-top: 10px;
   z-index: 10;
+  width: 100%;
 }
 
 .check p {
   font-size: 1.1em;
   opacity: 0.8;
+  width: 90%;
 }
 
 .three__dots {

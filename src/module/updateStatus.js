@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/no-cycle
+import Starter from '../index.js';
+
 export const inputTodo = document.querySelector('.add__list');
 
 export default class TodoList {
@@ -62,11 +65,26 @@ export default class TodoList {
     localStorage.setItem('todoList', JSON.stringify(this.list));
   }
 
-  // SMALL UTILITIES
+  // SMALL UTILITIES Needed
 
   editListWrite(pDots, index, e) {
+    if (e.key === 'Enter') {
+      pDots.contentEditable = false;
+      document.querySelector('.color .trash').remove();
+      this.divDot = document.createElement('div');
+      this.divDot.classList.add('three__dots');
+      document.querySelector('.color').appendChild(this.divDot);
+      document.querySelector('.color').classList.remove('color');
+      const change = pDots.innerText;
+      pDots.innerText = change
+        .split('')
+        .splice(0, change.length - 2)
+        .join('');
+    }
+
     this.list[index].description = pDots.innerText;
     localStorage.setItem('todoList', JSON.stringify(this.list));
+    Starter();
   }
 
   reArrange() {
