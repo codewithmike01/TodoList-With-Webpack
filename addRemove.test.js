@@ -1,6 +1,6 @@
-import TodoList from './src/module/updateStatus';
+import TodoList from './src/module/updateStatus.js';
 
-import LocalStorage from './__mocks__/LocalStorage';
+import LocalStorage from './__mocks__/LocalStorage.js';
 
 global.localStorage = new LocalStorage();
 const todolist = new TodoList();
@@ -11,7 +11,9 @@ describe('Add and Remove', () => {
 
     todolist.addTodo(title);
 
-    expect(todolist.list[0].description).toBe('Hello');
+    const array = todolist.list[0].description;
+
+    expect(array).toBe('Hello');
   });
 });
 
@@ -20,6 +22,8 @@ describe('Remove an Element', () => {
     const title = 'Hello';
     todolist.removeList(title);
 
-    expect(todolist.list.length).toBe(0);
+    const arrayLength = todolist.list.length;
+
+    expect(arrayLength).toBe(0);
   });
 });
