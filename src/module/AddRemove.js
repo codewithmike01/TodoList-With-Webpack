@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/no-cycle
+import Starter from '../index.js';
+
 const todoListContianer = document.querySelector('.todo__list');
 const listConatiner = document.querySelector('.list__container');
 const singleList = document.createElement('li');
@@ -42,6 +45,26 @@ export function render(member, TodoListObj) {
   });
 }
 
+function editListWrite(pDots, index, e, TodoListObj) {
+  if (e.key === 'Enter') {
+    pDots.contentEditable = false;
+    document.querySelector('.color .trash').remove();
+    const divDot = document.createElement('div');
+    divDot.classList.add('three__dots');
+    document.querySelector('.color').appendChild(divDot);
+    document.querySelector('.color').classList.remove('color');
+    const change = pDots.innerText;
+    pDots.innerText = change
+      .split('')
+      .splice(0, change.length - 2)
+      .join('');
+  }
+
+  TodoListObj.list[index].description = pDots.innerText;
+  localStorage.setItem('todoList', JSON.stringify(TodoListObj.list));
+  Starter();
+}
+
 export function editDescription(dotValue, index, TodoListObj) {
   const imageTrash = todoListContianer.querySelectorAll('li');
   const parentImage = imageTrash[index];
@@ -69,6 +92,6 @@ export function editDescription(dotValue, index, TodoListObj) {
   const pDots = divTrash.parentNode.querySelector('.tagP');
   pDots.contentEditable = true;
   pDots.addEventListener('keyup', (e) => {
-    TodoListObj.editListWrite(pDots, index, e);
+    editListWrite(pDots, index, e, TodoListObj);
   });
 }

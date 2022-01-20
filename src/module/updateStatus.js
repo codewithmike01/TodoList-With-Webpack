@@ -1,8 +1,3 @@
-// eslint-disable-next-line import/no-cycle
-import Starter from '../index.js';
-
-export const inputTodo = document.querySelector('.add__list');
-
 export default class TodoList {
   constructor() {
     this.list = localStorage.getItem('todoList')
@@ -10,11 +5,11 @@ export default class TodoList {
       : [];
   }
 
-  addTodo() {
+  addTodo(inputTodo) {
     const listLength = this.list.length;
-    if (inputTodo.value.trim() !== '') {
+    if (inputTodo !== '') {
       this.list.push({
-        description: inputTodo.value,
+        description: inputTodo,
         completed: false,
         index: listLength,
       });
@@ -22,7 +17,6 @@ export default class TodoList {
 
     this.reArrange();
     localStorage.setItem('todoList', JSON.stringify(this.list));
-    inputTodo.value = '';
   }
 
   markList(content, index, marked) {
@@ -52,40 +46,13 @@ export default class TodoList {
     localStorage.setItem('todoList', JSON.stringify(this.list));
   }
 
-  removeList() {
-    const strickers = document.querySelectorAll('.strike');
-    strickers.forEach((value) => {
-      const parentContainerLi = value.parentNode.parentNode;
-      parentContainerLi.style.display = 'none';
-      const title = parentContainerLi.querySelector('.tagP').textContent;
-      this.list = this.list.filter((value) => value.description !== title);
-    });
-
+  removeList(title) {
+    this.list = this.list.filter((value) => value.description !== title);
     this.reArrange();
     localStorage.setItem('todoList', JSON.stringify(this.list));
   }
 
   // SMALL UTILITIES Needed
-
-  editListWrite(pDots, index, e) {
-    if (e.key === 'Enter') {
-      pDots.contentEditable = false;
-      document.querySelector('.color .trash').remove();
-      this.divDot = document.createElement('div');
-      this.divDot.classList.add('three__dots');
-      document.querySelector('.color').appendChild(this.divDot);
-      document.querySelector('.color').classList.remove('color');
-      const change = pDots.innerText;
-      pDots.innerText = change
-        .split('')
-        .splice(0, change.length - 2)
-        .join('');
-    }
-
-    this.list[index].description = pDots.innerText;
-    localStorage.setItem('todoList', JSON.stringify(this.list));
-    Starter();
-  }
 
   reArrange() {
     this.list.forEach((value, index) => {
