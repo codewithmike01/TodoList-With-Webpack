@@ -80,11 +80,8 @@ describe('Editable Dom', () => {
 });
 
 describe('Completed Status Update', () => {
-  afterEach(() => {
-    document.getElementsByTagName('html')[0].innerHTML = '';
-  });
-
   const index = 0;
+
   test('Status Test default is false', () => {
     const listValue = todolist.list[index];
 
@@ -125,7 +122,7 @@ describe('Clear All Completed', () => {
     expect(todolist.list[2].completed).toBe(true);
 
     todolist.removeList(title);
-    todolist.removeList(titleOne);
+    todolist.removeList(titleTwo);
 
     expect(todolist.list.length).toBe(2);
   });
