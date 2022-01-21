@@ -29,6 +29,11 @@ then
 
 run `npm install` to install dependencies
 
+### Run test
+
+run `npm run test`
+
+
 ## Authors
 
 👤 **Author**
