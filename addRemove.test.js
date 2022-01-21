@@ -75,7 +75,9 @@ describe('Editable Dom', () => {
 
     editListWrite(textInsterted, index, todolist);
 
-    expect(todolist.list[0].description).toBe('Task');
+    const description = todolist.list[0].description;
+
+    expect(description).toBe('Task');
   });
 });
 
@@ -85,7 +87,9 @@ describe('Completed Status Update', () => {
   test('Status Test default is false', () => {
     const listValue = todolist.list[index];
 
-    expect(listValue.completed).toBe(false);
+    const status = listValue.completed;
+
+    expect(status).toBe(false);
   });
 
   test('Status change to True', () => {
@@ -94,7 +98,9 @@ describe('Completed Status Update', () => {
 
     todolist.markList(title, marked);
 
-    expect(todolist.list[index].completed).toBe(true);
+    const status = todolist.list[index].completed;
+
+    expect(status).toBe(true);
   });
 });
 
@@ -107,7 +113,9 @@ describe('Clear All Completed', () => {
     todolist.addTodo(titleTwo);
     todolist.addTodo(titleFour);
 
-    expect(todolist.list.length).toBe(4);
+    const length = todolist.list.length;
+
+    expect(length).toBe(4);
   });
 
   test('Mark some List Item as completed And remove', () => {
@@ -118,12 +126,17 @@ describe('Clear All Completed', () => {
     todolist.markList(title, marked);
     todolist.markList(titleTwo, marked);
 
-    expect(todolist.list[0].completed).toBe(true);
-    expect(todolist.list[2].completed).toBe(true);
+    const statusOne = todolist.list[0].completed;
+    const statusTwo = todolist.list[2].completed
+
+    expect(statusOne).toBe(true);
+    expect(statusTwo).toBe(true);
 
     todolist.removeList(title);
     todolist.removeList(titleTwo);
 
-    expect(todolist.list.length).toBe(2);
+    const length = todolist.list.length;
+
+    expect(length).toBe(2);
   });
 });
