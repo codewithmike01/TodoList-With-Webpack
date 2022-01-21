@@ -32,7 +32,7 @@ export function render(member, TodoListObj) {
   // EventListner for CheckBox
   const checkBox = document.querySelectorAll('.chBox');
   let marked = false;
-  checkBox.forEach((content, index) => {
+  checkBox.forEach((content) => {
     const p = content.parentNode.querySelector('.tagP');
     const title = p.innerText;
     content.addEventListener('change', () => {

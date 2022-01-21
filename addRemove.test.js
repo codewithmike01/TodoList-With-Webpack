@@ -75,7 +75,7 @@ describe('Editable Dom', () => {
 
     editListWrite(textInsterted, index, todolist);
 
-    const description = todolist.list[0].description;
+    const { description } = todolist.list[0];
 
     expect(description).toBe('Task');
   });
@@ -113,7 +113,7 @@ describe('Clear All Completed', () => {
     todolist.addTodo(titleTwo);
     todolist.addTodo(titleFour);
 
-    const length = todolist.list.length;
+    const { length } = todolist.list;
 
     expect(length).toBe(4);
   });
@@ -127,7 +127,7 @@ describe('Clear All Completed', () => {
     todolist.markList(titleTwo, marked);
 
     const statusOne = todolist.list[0].completed;
-    const statusTwo = todolist.list[2].completed
+    const statusTwo = todolist.list[2].completed;
 
     expect(statusOne).toBe(true);
     expect(statusTwo).toBe(true);
@@ -135,7 +135,7 @@ describe('Clear All Completed', () => {
     todolist.removeList(title);
     todolist.removeList(titleTwo);
 
-    const length = todolist.list.length;
+    const { length } = todolist.list;
 
     expect(length).toBe(2);
   });
