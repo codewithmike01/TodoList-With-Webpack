@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-cycle
-import Starter from '../index.js';
+import Starter from './starter.js';
 
 const todoListContianer = document.querySelector('.todo__list');
 const listConatiner = document.querySelector('.list__container');
@@ -32,35 +32,25 @@ export function render(member, TodoListObj) {
   // EventListner for CheckBox
   const checkBox = document.querySelectorAll('.chBox');
   let marked = false;
-  checkBox.forEach((content, index) => {
+  checkBox.forEach((content) => {
+    const p = content.parentNode.querySelector('.tagP');
+    const title = p.innerText;
     content.addEventListener('change', () => {
       if (content.checked) {
+        p.classList.add('strike');
         marked = true;
-        TodoListObj.markList(content, index, marked);
+        TodoListObj.markList(title, marked);
       } else {
+        p.classList.remove('strike');
         marked = false;
-        TodoListObj.markList(content, index, marked);
+        TodoListObj.markList(title, marked);
       }
     });
   });
 }
 
-function editListWrite(pDots, index, e, TodoListObj) {
-  if (e.key === 'Enter') {
-    pDots.contentEditable = false;
-    document.querySelector('.color .trash').remove();
-    const divDot = document.createElement('div');
-    divDot.classList.add('three__dots');
-    document.querySelector('.color').appendChild(divDot);
-    document.querySelector('.color').classList.remove('color');
-    const change = pDots.innerText;
-    pDots.innerText = change
-      .split('')
-      .splice(0, change.length - 2)
-      .join('');
-  }
-
-  TodoListObj.list[index].description = pDots.innerText;
+export function editListWrite(textInserted, index, TodoListObj) {
+  TodoListObj.list[index].description = textInserted;
   localStorage.setItem('todoList', JSON.stringify(TodoListObj.list));
   Starter();
 }
@@ -92,6 +82,16 @@ export function editDescription(dotValue, index, TodoListObj) {
   const pDots = divTrash.parentNode.querySelector('.tagP');
   pDots.contentEditable = true;
   pDots.addEventListener('keyup', (e) => {
-    editListWrite(pDots, index, e, TodoListObj);
+    if (e.key === 'Enter') {
+      pDots.contentEditable = false;
+      document.querySelector('.color .trash').remove();
+      const divDot = document.createElement('div');
+      divDot.classList.add('three__dots');
+      document.querySelector('.color').appendChild(divDot);
+      document.querySelector('.color').classList.remove('color');
+      pDots.innerText = pDots.innerText.replace(/\r?\n|\r/g, '');
+      const text = pDots.innerHTML;
+      editListWrite(text, index, TodoListObj);
+    }
   });
 }
